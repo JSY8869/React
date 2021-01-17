@@ -39,3 +39,14 @@ import App from './App';
 ```
 - 위의 코드에서 ./App 은 src 폴더 내의 App.js 파일을 말함
 - App.js 파일을 수정하여 JS 코딩이 가능
+## 8장 CSS 코딩하는 법
+- App.js 에서 import './App.css';를 통해 css파일을 사용
+- index.js 에서 import './index.css';를 통해 css파일을 사용
+## 9장 배포하는 법
+- build할 때 npm run build
+- 실제 배포할 때는 build 폴더 내의 파일들을 배포
+- npx serve -s build 명령어로 서버 생성
+- npm serve -s build 도 가능
+## 10장 리액트가 없다면
+- ```<header>, <nav>, <article>``` 태그 알아두기
+- [pure.html-react가 없는 형태](pure.html)
