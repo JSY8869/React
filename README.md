@@ -50,3 +50,43 @@ import App from './App';
 ## 10장 리액트가 없다면
 - ```<header>, <nav>, <article>``` 태그 알아두기
 - [pure.html-react가 없는 형태](pure.html)
+## 11장 컴포넌트 만들기
+컴포넌트를 만드는 코드
+```
+class App extends Component {
+  render(){
+    return (
+    );
+  }
+}
+```
+- 컴포넌트는 반드시 최상위 태그만 사용해야 함
+- **JSX 코드로 코딩하면 create-react-app이 알아서 JavaScript코드로 변환해줌**
+## 12장 props
+```jsx
+class Subject extends Component {
+  render() {
+    return (
+      <header>
+        <h1>{this.props.title}</h1>
+        {this.props.sub}
+      </header>
+    );
+  }
+}
+
+class App extends Component { // 컴포넌트를 만드는 코드
+  render(){
+    return (
+      <div className="App">
+        <Subject title="WEB" sub="world wide web!"></Subject>
+        Hello, React!!
+        <TOC></TOC>
+        <Content></Content>
+      </div>
+    );
+  }
+}
+```
+## 13장 [React Developer Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi/related?hl=ko)
+
