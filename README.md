@@ -90,3 +90,24 @@ class App extends Component { // 컴포넌트를 만드는 코드
 ```
 ## 13장 [React Developer Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi/related?hl=ko)
 
+## 14장 Component 파일로 분리하기
+- ```export default TOC;``` TOC라는 클래스를 다른 곳에서 사용할 수 있게 함
+- import로 불러오고 from 으로 경로 지정
+## 15장 state
+- probs의 값에 따라서 내부의 구현에 필요한 데이터
+```js
+  constructor(probs){
+    super(probs);
+    this.state = {
+      subject:{title:'WEB', sub:'World wid Web'}
+    }
+  }
+```
+### key
+- 반복문 사용해서 태그 생성 시 key로 이름을 각각 지어줘야 함
+```js
+while(i < data.length){
+            lists.push(<li key={data[i].id}><a href ={"/content" + data[i].id}>{data[i].title}</a></li>)
+            i = i+1;
+        }
+```
