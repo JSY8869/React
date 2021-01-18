@@ -8,7 +8,9 @@ class App extends Component { // 컴포넌트를 만드는 코드
   constructor(probs){
     super(probs);
     this.state = {
-      subject:{title:'WEB', sub:'World wid Web'},
+      mod: 'welcome',
+      subject:{title:'WEB', sub:'World wide Web'},
+      welcome:{title:'WeB', descs:'world wide Web'},
       content:[
         {id:1, title:'HTML', desc:'HTML is for information'},
         {id:2, title:'CSS', desc:'CSS is for design'},
@@ -17,6 +19,11 @@ class App extends Component { // 컴포넌트를 만드는 코드
     }
   }
   render(){
+    var _title, _desc = null;
+    if (this.state.mod === 'welcome'){
+      _title = this.state.welcome.title;
+      _desc = this.state.welcome.descs;
+    }
     return (
       <div className="App">
         <Subject 
@@ -25,7 +32,7 @@ class App extends Component { // 컴포넌트를 만드는 코드
         </Subject>
         Hello, React!!
         <TOC data={this.state.content}></TOC>
-        <Content title="HTML" desc="HTML is HyperText Markup Language."></Content>
+        <Content title={_title} desc={_desc}></Content>
       </div>
     );
   }

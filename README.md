@@ -111,3 +111,5 @@ while(i < data.length){
             i = i+1;
         }
 ```
+## 16장 이벤트 state props 그리고 render 함수
+- state의 값이 바뀌면 state의 값을 가진 컴포넌트의 모든 render 함수가 다시 호출됨
