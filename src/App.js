@@ -24,11 +24,19 @@ class App extends Component { // 컴포넌트를 만드는 코드
       _title = this.state.welcome.title;
       _desc = this.state.welcome.descs;
     }
+    else if(this.state.mod === 'read'){
+      _title = this.state.content[0].title;
+      _desc = this.state.content[0].desc;
+    }
     return (
       <div className="App">
         <Subject 
           title={this.state.subject.title}
-          sub={this.state.subject.sub}>
+          sub={this.state.subject.sub}
+          onChangePage={function(){
+            this.setState({mod: 'read'});
+          }.bind(this)}
+        >
         </Subject>
         Hello, React!!
         <TOC data={this.state.content}></TOC>

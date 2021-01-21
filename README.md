@@ -113,3 +113,31 @@ while(i < data.length){
 ```
 ## 16장 이벤트 state props 그리고 render 함수
 - state의 값이 바뀌면 state의 값을 가진 컴포넌트의 모든 render 함수가 다시 호출됨
+- debugger -> 실행 중단시킴
+- preventDefault() -> 태그의 동작을 막음
+- onclick -> onClick으로 사용
+- onClick={function(e){}} -> e는 **이벤트**
+- **bind, setState**
+- onClick={function(e){}.bind(this)} -> this를 함수에서의 컴포넌트로 사용
+- this.setState({ mode: 'read' }); -> this.state.mode를 react에서 변경하는 방법
+## 17장 컴포넌트 이벤트 만들기
+```js
+// 메인 컴포넌트
+        <Subject 
+          title={this.state.subject.title}
+          sub={this.state.subject.sub}
+          onChangePage={function(){
+            this.setState({mod: 'read'});
+          }.bind(this)}
+        >
+        </Subject>
+```
+```js
+// subject 컴포넌트
+          <h1><a href="/" onClick={function(e){
+            e.preventDefault();
+            this.props.onChangePage();
+          }.bind(this)}>{this.props.title}</a></h1>
+          {this.props.sub}
+```
+
