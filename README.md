@@ -140,4 +140,41 @@ while(i < data.length){
           }.bind(this)}>{this.props.title}</a></h1>
           {this.props.sub}
 ```
-
+```js
+// 반복문을 통해 id값에 따라 제목과 내용이 바뀌게 함 (APP.js)
+    else if(this.state.mod === 'read'){
+      var i = 0;
+      while (i < this.state.content.length){
+        var data = this.state.content[i];
+        if (this.state.selected_content_id === data.id){
+          _title = data.title;
+          _desc = data.desc;
+          break;
+        }
+        i = i + 1;
+      }
+    }
+```
+```js
+// id값을 받아와 selcted_content_id에 숫자값으로 넣어줌 (APP.js)
+          onChangePage={function(id){
+            this.setState({
+              mod: 'read',
+              selected_content_id:Number(id)
+            });
+          }.bind(this)} 
+```
+```js
+// data[i].id값을 id변수로 받아 onChangePage 함수에 인자로 넣어줌 (TOC.js)
+                    onClick={function(id,e){
+                        e.preventDefault();
+                        this.props.onChangePage(id);
+                    }.bind(this, data[i].id)}
+```
+## 18장 베이스 캠프
+- props는 컴포넌트 내부에서 변경 불가
+- state는 setState로 변경 가능
+- 하위 컴포넌트에서 상위 컴포넌트의 값을 바꿀 때는 event 이용
+- 상위 컴포넌트에서 하위 컴포넌트의 값을 바꿀 때는 props 이용
+1. props는 스마트폰의 볼륨버튼이라면 사용자가 볼륨버튼을 누르면 state는 스마트폰안에서 스스로의 상태인 볼륨이 바뀌게 해놓은 모든 조치(회로,프로그래밍 등등)라고 할 수 있습니다. 
+2. 상위 컴포넌트는 하위 컴포넌트에게 props를 통해 값을 전달해 내부의 state를 바꾸기 때문에 컴포넌트 스스로 외부에서 전달되는 props를 변경하는 것은 금지되어 있습니다.  또한 하위 컴포넌트가 상위 컴포넌트를 동작시키려면 props를 전달하는 것이 아니라 상위 컴포넌트 안에 이벤트를 심고 그 안에 setState로 값을 바꿔야 합니다.

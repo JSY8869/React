@@ -9,6 +9,7 @@ class App extends Component { // 컴포넌트를 만드는 코드
     super(probs);
     this.state = {
       mod: 'welcome',
+      selected_content_id:2,
       subject:{title:'WEB', sub:'World wide Web'},
       welcome:{title:'WeB', descs:'world wide Web'},
       content:[
@@ -25,8 +26,16 @@ class App extends Component { // 컴포넌트를 만드는 코드
       _desc = this.state.welcome.descs;
     }
     else if(this.state.mod === 'read'){
-      _title = this.state.content[0].title;
-      _desc = this.state.content[0].desc;
+      var i = 0;
+      while (i < this.state.content.length){
+        var data = this.state.content[i];
+        if (this.state.selected_content_id === data.id){
+          _title = data.title;
+          _desc = data.desc;
+          break;
+        }
+        i = i + 1;
+      }
     }
     return (
       <div className="App">
@@ -34,12 +43,20 @@ class App extends Component { // 컴포넌트를 만드는 코드
           title={this.state.subject.title}
           sub={this.state.subject.sub}
           onChangePage={function(){
-            this.setState({mod: 'read'});
+            this.setState({mod: 'welcome'});
           }.bind(this)}
         >
         </Subject>
         Hello, React!!
-        <TOC data={this.state.content}></TOC>
+        <TOC 
+          onChangePage={function(id){
+            this.setState({
+              mod: 'read',
+              selected_content_id:Number(id)
+            });
+          }.bind(this)} 
+          data={this.state.content}>
+        </TOC>
         <Content title={_title} desc={_desc}></Content>
       </div>
     );
