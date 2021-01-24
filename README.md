@@ -178,3 +178,16 @@ while(i < data.length){
 - 상위 컴포넌트에서 하위 컴포넌트의 값을 바꿀 때는 props 이용
 1. props는 스마트폰의 볼륨버튼이라면 사용자가 볼륨버튼을 누르면 state는 스마트폰안에서 스스로의 상태인 볼륨이 바뀌게 해놓은 모든 조치(회로,프로그래밍 등등)라고 할 수 있습니다. 
 2. 상위 컴포넌트는 하위 컴포넌트에게 props를 통해 값을 전달해 내부의 state를 바꾸기 때문에 컴포넌트 스스로 외부에서 전달되는 props를 변경하는 것은 금지되어 있습니다.  또한 하위 컴포넌트가 상위 컴포넌트를 동작시키려면 props를 전달하는 것이 아니라 상위 컴포넌트 안에 이벤트를 심고 그 안에 setState로 값을 바꿔야 합니다.
+## 19장 create 구현
+- concat은 원본을 바꾸지 않는다.(배열 값 추가)
+```js 
+// props 값이 바뀌면 실행 아니면 중단 -> 랜더링 낭비 방지
+    shouldComponentUpdate(newProps, newState){
+        if(this.props.data === newProps.data){
+            return false;
+        }
+        return true;
+    }
+```
+- [App.js](APP.js)
+- [CreateContents.js](/components/CreateContents.js)
