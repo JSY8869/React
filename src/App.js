@@ -5,13 +5,14 @@ import ReadContent from "./components/ReadContents";
 import Subject from "./components/subject";
 import Control from "./components/Control";
 import CreateContent from "./components/CreateContents";
+import UpdateContent from "./components/UpdateContents";
 
 class App extends Component { // 컴포넌트를 만드는 코드
   constructor(probs){
     super(probs);
-    this.mix_content_id = 3;
+    this.max_content_id = 3;
     this.state = {
-      mod: 'create',
+      mod: 'welcome',
       selected_content_id:2,
       subject:{title:'WEB', sub:'World wide Web'},
       welcome:{title:'WeB', descs:'world wide Web'},
@@ -22,7 +23,17 @@ class App extends Component { // 컴포넌트를 만드는 코드
       ]
     };
   }
-  render(){
+  getReadContent(){
+    var i = 0;
+      while (i < this.state.content.length){
+        var data = this.state.content[i];
+        if (this.state.selected_content_id === data.id){
+          return (data);
+        }
+        i = i + 1;
+      }
+  }
+  getContent(){
     var _title, _desc, _article = null;
     if (this.state.mod === 'welcome'){
       _title = this.state.welcome.title;
@@ -30,17 +41,8 @@ class App extends Component { // 컴포넌트를 만드는 코드
       _article = <ReadContent title={_title} desc={_desc}></ReadContent>;
     }
     else if(this.state.mod === 'read'){
-      var i = 0;
-      while (i < this.state.content.length){
-        var data = this.state.content[i];
-        if (this.state.selected_content_id === data.id){
-          _title = data.title;
-          _desc = data.desc;
-          break;
-        }
-        i = i + 1;
-      }
-      _article = <ReadContent title={_title} desc={_desc}></ReadContent>;
+      var _content = this.getReadContent();
+      _article = <ReadContent title={_content.title} desc={_content.desc}></ReadContent>
     }
     else if(this.state.mod === 'create'){
       _article = <CreateContent onSubmit={function(_title, _desc){
@@ -49,10 +51,33 @@ class App extends Component { // 컴포넌트를 만드는 코드
           {id:this.max_content_id, title:_title, desc:_desc}
         );
         this.setState({
-          content:contents
+          content:contents,
+          mod:"read",
+          selected_content_id:this.max_content_id
         });
       }.bind(this)}></CreateContent>
     }
+    else if(this.state.mod === 'update'){
+      _content = this.getReadContent();
+      _article = <UpdateContent data={_content} onSubmit={function(_id, _title, _desc){
+        var _contents = Array.from(this.state.content);
+        var i = 0;
+        while(i<_contents.length){
+          if(_contents[i].id === _id){
+            _contents[i] = {id:_id, title:_title, desc:_desc};
+            break;
+          }
+          i = i + 1;
+        }
+        this.setState({
+          content:_contents,
+          mod:"read"
+        });
+      }.bind(this)}></UpdateContent>
+    }
+    return _article;
+  }
+  render(){
     return (
       <div className="App">
 
@@ -77,11 +102,30 @@ class App extends Component { // 컴포넌트를 만드는 코드
         </TOC>
 
         <Control onChangeMod={function(_mod){
-          this.setState({
-            mod: _mod
-          })
+          if(_mod === 'delete'){
+            if(window.confirm('delete?')){
+              var _contents = Array.from(this.state.content);
+              var i = 0;
+              while(i<this.state.content.length){
+                if(_contents[i].id === this.state.selected_content_id){
+                  _contents.splice(i,1);
+                  break;
+                }
+                i = i + 1;
+              }
+            }
+            this.setState({
+              mod:'welcome',
+              content:_contents
+            });
+            alert('deleted!');
+          } else{
+            this.setState({
+              mod: _mod
+            });
+          }
         }.bind(this)}></Control>
-        {_article}
+        {this.getContent()}
       </div>
     );
   }

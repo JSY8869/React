@@ -191,3 +191,7 @@ while(i < data.length){
 ```
 - [App.js](APP.js)
 - [CreateContents.js](/components/CreateContents.js)
+## 20장 update 구현
+- [UpdateContents.js](/components/UpdateContents.js)
+## 21장 delete 구현
+- [App.js](APP.js)
