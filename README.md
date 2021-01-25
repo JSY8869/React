@@ -189,9 +189,9 @@ while(i < data.length){
         return true;
     }
 ```
-- [App.js](APP.js)
+- [App.js](src/APP.js)
 - [CreateContents.js](src/components/CreateContents.js)
 ## 20장 update 구현
 - [UpdateContents.js](src/components/UpdateContents.js)
 ## 21장 delete 구현
-- [App.js](APP.js)
+- [App.js](src/APP.js)
