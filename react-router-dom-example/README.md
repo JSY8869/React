@@ -7,8 +7,8 @@
 4. 설치한 React 프로젝트 디렉토리를 열어 package.json 파일에 "dependencies" 중 "react-router-dom" 이 있는지 확인해 본다.
 ## Route
 **주소가 일치하는 컴포넌트를 실행시킴**
-http://localhost:3000/의 path="/"
-http://localhost:3000/topics의 path="/", "/topics"
+`http://localhost:3000/`의 `path="/"`
+`http://localhost:3000/topics`의 `path="/"`, `"/topics"`
 exact를 사용하여 정확한 주소만 걸리게 할 수 있음
 ```js
 <Route exact path="/"><Home></Home></Route>
