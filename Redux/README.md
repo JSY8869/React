@@ -35,3 +35,13 @@ function reducer(state, action){
     store.subscribe(green);
     store.subscribe(blue);
 ```
+## Redux dev tools
+- 시간여행이 가능해짐
+- local 서버를 열어야 사용가능
+`window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()`를 추가해야 함
+```js
+Redux.createStore(
+                reducer,
+                window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+            );
+```
